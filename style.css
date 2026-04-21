@@ -1,0 +1,215 @@
+:root {
+    --bg: #16161c;
+    --panel-bg: #1c1c24;
+    --grid: #282832;
+    --algo: #6495ed;
+    --wind: #ff6347;
+    --human: #22c850;
+    --target: #ffa500;
+    --graph-bg: #18181e;
+    --text: #bebec8;
+    --text-dim: #787887;
+    --accent: #353545;
+    --thumb: #6495ed;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Consolas', 'Courier New', monospace;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    height: 100vh; 
+    user-select: none;
+}
+
+#side-panel {
+    width: 340px;
+    background: var(--panel-bg);
+    border-right: 1px solid #3c3c46;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+#side-panel h2 {
+    font-size: 14px;
+    margin: 0 0 20px 0;
+    color: var(--algo);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 10px;
+}
+
+.category-header {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin: 15px 0 10px 0;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
+.category-header::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #2d2d38;
+    margin-left: 10px;
+}
+
+.slider-row {
+    margin-bottom: 14px;
+}
+
+.slider-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    margin-bottom: 6px;
+    color: #a0a0b0;
+}
+
+.slider-label span:last-child {
+    color: var(--algo);
+    font-weight: bold;
+}
+
+.category-header:first-of-type {
+    margin-top: 0;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+}
+
+input[type=range]:focus { outline: none; }
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    height: 12px;
+    width: 12px;
+    border-radius: 2px;
+    background: var(--thumb);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -4px;
+    box-shadow: 0 0 5px rgba(100, 149, 237, 0.4);
+}
+
+.tooltip-trigger {
+    position: relative;
+    cursor: help;
+    margin-left: 4px;
+    color: var(--text-dim);
+    font-size: 9px;
+    border: 1px solid var(--accent);
+    padding: 0 3px;
+    border-radius: 3px;
+}
+
+.tooltip-trigger::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2d2d38;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 10px;
+    width: 180px;
+    line-height: 1.4;
+    white-space: normal;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    border: 1px solid var(--algo);
+    z-index: 100;
+    pointer-events: none;
+}
+
+.tooltip-trigger:hover::before {
+    visibility: visible;
+    opacity: 1;
+}
+
+#main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+#canvas-container {
+    flex: 1;
+    position: relative;
+    cursor: crosshair;
+    min-height: 0;
+}
+
+canvas { display: block; width: 100%; height: 100%; }
+
+#graph-container {
+    height: 140px;
+    background: var(--graph-bg);
+    border-top: 1px solid #3c3c46;
+}
+
+#status-bar {
+    padding: 10px 15px;
+    font-size: 12px;
+    background: var(--bg);
+    border-top: 1px solid #3c3c46;
+}
+
+.metric-line { margin: 2px 0; white-space: pre; }        
+.algo-text { color: var(--algo); }
+.wind-text { color: var(--wind); }
+.help-text { color: var(--text-dim); margin-top: 4px; font-size: 11px; }
+
+.recording-indicator {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #ff3c3c;
+    font-weight: bold;
+    display: none;
+}
+
+#side-panel::-webkit-scrollbar {
+    width: 4px;
+}
+
+#side-panel::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+#side-panel::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+    transition: background 0.2s;
+}
+
+#side-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--algo);
+    box-shadow: 0 0 8px var(--algo);
+}
