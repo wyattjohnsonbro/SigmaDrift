@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotorSynergy - SigmaDrift vs WindMouse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="side-panel">
+        <h2>Engine Config</h2>
+        <div id="controls"></div>
+    </div>
+
+    <div id="main-content">
+        <div id="canvas-container">
+            <canvas id="mainCanvas"></canvas>
+            <div id="recordingTag" class="recording-indicator">* RECORDING *</div>
+        </div>
+
+        <div id="graph-container">
+            <canvas id="graphCanvas"></canvas>
+        </div>
+
+        <div id="status-bar">
+            <div id="algoMetrics" class="metric-line algo-text"></div>
+            <div id="windMetrics" class="metric-line wind-text"></div>
+            <div class="help-text">
+                L-Click: Start | R-Click: Target | Space: SigmaDrift | W: WindMouse | R: Record | C: Clear
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
